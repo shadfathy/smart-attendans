@@ -5,11 +5,13 @@ import '../theme/text_styles.dart';
 
 class AuthActionButton extends StatelessWidget {
   final String title;
+  final bool isLoading;
   final VoidCallback onPressed;
 
   const AuthActionButton({
     super.key,
     required this.title,
+    this.isLoading = false,
     required this.onPressed,
   });
 
@@ -17,10 +19,8 @@ class AuthActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(18.r),
-         
-        ),
+        width: double.infinity,
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(18.r)),
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             backgroundColor: ColorsManager.white,
@@ -31,14 +31,22 @@ class AuthActionButton extends StatelessWidget {
             ),
             elevation: 0,
           ),
-          onPressed: onPressed,
-          child: Text(
-            title,
-            style: TextStyles.font24Primary500Weight(context).copyWith(
-              fontSize: 30.sp,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
+          onPressed: isLoading ? null : onPressed,
+          child: isLoading
+              ? SizedBox(
+                  height: 25.h,
+                  width: 25.h,
+                  child: const CircularProgressIndicator(
+                    color: ColorsManager.primary500,
+                    strokeWidth: 3,
+                  ),
+                )
+              : Text(
+                  title,
+                  style: TextStyles.font24Primary500Weight(
+                    context,
+                  ).copyWith(fontSize: 20.sp, fontWeight: FontWeight.w700),
+                ),
         ),
       ),
     );

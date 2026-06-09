@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "89697209969",
+    "firebase_url": "https://smartattendancesystem-bcccc-default-rtdb.firebaseio.com",
+    "project_id": "smartattendancesystem-bcccc",
+    "storage_bucket": "smartattendancesystem-bcccc.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:89697209969:android:c31a2404a0800aedead5d0",
+        "android_client_info": {
+          "package_name": "com.example.first_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCk96KnRKXR6XJmNRjm81lQp5LgNHkXHsg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:89697209969:android:b11cbf3ac2a4021cead5d0",
+        "android_client_info": {
+          "package_name": "com.example.smart_attendance"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCk96KnRKXR6XJmNRjm81lQp5LgNHkXHsg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

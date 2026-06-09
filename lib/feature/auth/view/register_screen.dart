@@ -8,7 +8,6 @@ import '../../../core/widgets/auth_action_button.dart';
 import '../../../core/widgets/auth_text_field.dart';
 import '../view_model/register_view_model.dart';
 
-
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
 
@@ -50,57 +49,75 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: Column(
                 children: [
                   AuthHeader(
-                    title: 'Create Your Account',
+                    title: 'إنشاء حساب جديد',
                     onBack: () => Navigator.pop(context),
                   ),
                   Transform.translate(
-                    offset: Offset(0, -30.h),
+                    offset: Offset(0, -110.h),
                     child: AuthContainer(
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           AuthTextField(
+                            controller: _viewModel.fullNameController,
+                            hintText: 'أدخل الاسم بالكامل',
+                            iconPath: AppAssets.profile,
+                          ),
+                          AuthTextField(
+                            controller: _viewModel.facultyIdController,
+                            hintText: 'أدخل ID الطالب',
+                            iconPath: AppAssets
+                                .idCard, // Assuming idCard exists or I'll check
+                          ),
+                          AuthTextField(
                             controller: _viewModel.emailController,
-                            hintText: 'Enter Your E-mail',
+                            hintText: 'أدخل البريد الإلكتروني',
                             iconPath: AppAssets.email,
                           ),
                           AuthTextField(
                             controller: _viewModel.passwordController,
-                            hintText: 'Enter Your Password',
+                            hintText: 'أدخل كلمة المرور',
                             iconPath: AppAssets.lock,
                             obscureText: true,
                           ),
                           AuthTextField(
                             controller: _viewModel.confirmPasswordController,
-                            hintText: 'Confirm Your Password',
+                            hintText: 'تأكيد كلمة المرور',
                             iconPath: AppAssets.lock,
                             obscureText: true,
                           ),
-                          SizedBox(height: 10.h),
-                          AuthActionButton(
-                            title: 'Creat Account',
-                            onPressed: () => _viewModel.register(context),
+                          // SizedBox(height: 10.h),
+                          ValueListenableBuilder<bool>(
+                            valueListenable: _viewModel.isLoading,
+                            builder: (context, isLoading, child) {
+                              return AuthActionButton(
+                                title: 'إنشاء الحساب',
+                                isLoading: isLoading,
+                                onPressed: () => _viewModel.register(context),
+                              );
+                            },
                           ),
-                          SizedBox(height: 15.h),
+                          SizedBox(height: 24.h),
                           GestureDetector(
                             onTap: () => _viewModel.goBack(context),
                             child: RichText(
                               text: TextSpan(
                                 children: [
                                   TextSpan(
-                                    text: "Already a member ? ",
-                                    style: TextStyles.font24Yellow700Weight(context)
-                                        .copyWith(
-                                      fontSize: 18.sp,
-                                    ),
+                                    text: "لديك حساب بالفعل؟ ",
+                                    style: TextStyles.font24Yellow700Weight(
+                                      context,
+                                    ).copyWith(fontSize: 16.sp),
                                   ),
                                   TextSpan(
-                                    text: "Log In",
-                                    style: TextStyles.font20White500Weight(context)
-                                        .copyWith(
-                                      fontSize: 18.sp,
-                                      fontWeight: FontWeight.w700,
-                                    ),
+                                    text: "تسجيل الدخول",
+                                    style:
+                                        TextStyles.font20White500Weight(
+                                          context,
+                                        ).copyWith(
+                                          fontSize: 16.sp,
+                                          fontWeight: FontWeight.w700,
+                                        ),
                                   ),
                                 ],
                               ),

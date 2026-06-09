@@ -1,2 +1,2 @@
-const String kArabicFontFamily = 'lateef';
-const String kLatinFontFamily = 'lateef';
+const String kArabicFontFamily = 'Tajawal';
+const String kLatinFontFamily = 'Tajawal';

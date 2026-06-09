@@ -34,7 +34,7 @@ class LiquidGlassButton extends StatelessWidget {
                 borderRadius: BorderRadius.circular(50.r),
                 color: const Color(0xFF0C6C78).withOpacity(0.75),
                 border: Border.all(
-                  color: Colors.white.withOpacity(0.15),
+                  color: ColorsManager.white.withOpacity(0.15),
                   width: 1.2,
                 ),
               ),

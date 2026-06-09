@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../theme/colors.dart';
 import '../theme/text_styles.dart';
 
-class AuthTextField extends StatelessWidget {
+class AuthTextField extends StatefulWidget {
   final TextEditingController controller;
   final String hintText;
   final String iconPath;
@@ -18,6 +18,19 @@ class AuthTextField extends StatelessWidget {
   });
 
   @override
+  State<AuthTextField> createState() => _AuthTextFieldState();
+}
+
+class _AuthTextFieldState extends State<AuthTextField> {
+  late bool _isObscured;
+
+  @override
+  void initState() {
+    super.initState();
+    _isObscured = widget.obscureText;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       height: 62.h,
@@ -26,20 +39,20 @@ class AuthTextField extends StatelessWidget {
         borderRadius: BorderRadius.circular(32.r),
         gradient: LinearGradient(
           colors: [
-            Colors.white.withOpacity(0.18),
-            Colors.white.withOpacity(0.08),
+            ColorsManager.white.withOpacity(0.18),
+            ColorsManager.white.withOpacity(0.08),
           ],
         ),
-        border: Border.all(color: Colors.white.withOpacity(0.4), width: 1),
+        border: Border.all(color: ColorsManager.white.withOpacity(0.4), width: 1),
       ),
       child: TextFormField(
-        controller: controller,
-        obscureText: obscureText,
+        controller: widget.controller,
+        obscureText: _isObscured,
         style: TextStyles.font20White500Weight(
           context,
         ).copyWith(fontWeight: FontWeight.w600),
         decoration: InputDecoration(
-          hintText: hintText,
+          hintText: widget.hintText,
           hintStyle: TextStyles.font20White500Weight(context).copyWith(
             fontWeight: FontWeight.w600,
             color: ColorsManager.white.withOpacity(0.95),
@@ -51,12 +64,26 @@ class AuthTextField extends StatelessWidget {
           prefixIcon: Padding(
             padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 14.h),
             child: Image.asset(
-              iconPath,
+              widget.iconPath,
               width: 26.w,
               height: 26.h,
               color: ColorsManager.white,
             ),
           ),
+          suffixIcon: widget.obscureText
+              ? IconButton(
+                  icon: Icon(
+                    _isObscured ? Icons.visibility_off : Icons.visibility,
+                    color: ColorsManager.white.withOpacity(0.8),
+                    size: 24.w,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _isObscured = !_isObscured;
+                    });
+                  },
+                )
+              : null,
           border: InputBorder.none,
           contentPadding: EdgeInsets.symmetric(
             horizontal: 20.w,
